@@ -1,98 +1,147 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Ultramen 🤍</title>
-
 <style>
 body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ffe6f0, #fff5f9);
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-    color: #444;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(-45deg, #ff6a88, #ff99ac, #ffc3a0, #ff4e50);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+  color: white;
+  overflow: hidden;
+  padding: 20px;
 }
 
-.container {
-    padding: 30px;
-    max-width: 700px;
-    margin: auto;
+@keyframes gradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
-h1 {
-    color: #d63384;
-    font-size: 28px;
+.slide {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fade 1s;
 }
 
-p {
-    font-size: 17px;
-    line-height: 1.8;
+.active {
+  display: flex;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background: white;
+  color: #ff4e50;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.text-box {
+  max-width: 600px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .heart {
-    font-size: 40px;
-    animation: beat 1s infinite;
-    margin: 20px 0;
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear forwards;
 }
 
-@keyframes beat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-.footer {
-    margin-top: 40px;
-    font-size: 14px;
-    opacity: 0.7;
+@keyframes fall {
+  to { transform: translateY(110vh); }
 }
 </style>
 </head>
 
 <body>
 
+<div class="slide active">
+  <h1>For My Ultramen 🤍</h1>
+  <p>Heii, happy level up day sayangku 🥳</p>
+  <button onclick="nextSlide()">Buka Pesan 🤍</button>
+</div>
+
+<div class="slide">
+  <div class="text-box">
+    Di hari spesial ini, aa cuma mau neng buat doa terbaik.  
+    Semoga dengan bertambahnya usia, iman neng makin sempurna,  
+    ibadahnya makin rajin, selalu Allah kasih kesehatan, umur panjang,  
+    hati yang tenang, dan kebahagiaan tanpa habis.  
+    Semoga semua doa dan cita-cita neng terwujud dan dimudahkan  
+    dalam setiap urusannya. Aamiin. 🤲🤍
+  </div>
+  <button onclick="nextSlide()">Lanjut 🤍</button>
+</div>
+
+<div class="slide">
+  <div class="text-box">
+    Aa bersyukur banget bisa kenal dan dipertemukan sama neng.  
+    Jujur, aa selalu takut kehilangan neng karena aa sudah kasih  
+    seluruh perasaan aa sepenuhnya ke neng.  
+    Aa sayang banget sama neng. 🤍
+  </div>
+  <button onclick="nextSlide()">Lanjut Lagi 🤍</button>
+</div>
+
+<div class="slide">
+  <div class="text-box">
+    Aa selalu bangga dengan setiap pencapaian neng, sekecil apa pun itu.  
+    Walaupun kadang neng tengil banget dan bikin aa gemes 😊  
+    Semoga aa bisa terus terlibat dalam hidup neng,  
+    terus nemenin dan selalu ada, sampai kapan pun Allah izinkan.  
+    🤍  
+    <br><br>
+    <strong>Love you more, geulis 🤍</strong>
+  </div>
+</div>
+
 <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c1c7f7c33.mp3?filename=romantic-background-112191.mp3" type="audio/mpeg">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container">
-    <div class="heart">🤍</div>
-    <h1>For My Ultramen</h1>
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slide');
 
-    <p>
-    Heii, happy level up day sayangku 🥳
-    </p>
+function nextSlide() {
+  slides[current].classList.remove('active');
+  current++;
+  if (current >= slides.length) current = 0;
+  slides[current].classList.add('active');
+}
 
-    <p>
-    Di hari spesial ini, aa cuma mau neng buat doa terbaik. 
-    Semoga dengan bertambahnya usia, iman neng makin sempurna, ibadahnya makin rajin, 
-    selalu Allah kasih kesehatan, umur panjang, hati yang tenang, dan kebahagiaan tanpa habis.
-    Semoga semua doa dan cita-cita neng terwujud dan dimudahkan dalam setiap urusannya. Aamiin.
-    </p>
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '🤍';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+  document.body.appendChild(heart);
 
-    <p>
-    Aa bersyukur banget bisa kenal dan dipertemukan sama neng. 
-    Jujur, aa selalu takut kehilangan neng karena aa sudah kasih seluruh perasaan aa sepenuhnya ke neng.
-    Aa sayang banget sama neng.
-    </p>
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
 
-    <p>
-    Aa selalu bangga dengan setiap pencapaian neng, sekecil apa pun itu.
-    Walaupun kadang neng tengil banget dan bikin aa gemes 😊
-    </p>
-
-    <p>
-    Semoga aa bisa terus terlibat dalam hidup neng, terus nemenin dan selalu ada,
-    sampai kapan pun Allah izinkan.
-    </p>
-
-    <div class="heart">🤍</div>
-
-    <div class="footer">
-    Love you more, geulis 🤍
-    </div>
-</div>
+setInterval(createHeart, 300);
+</script>
 
 </body>
 </html>
